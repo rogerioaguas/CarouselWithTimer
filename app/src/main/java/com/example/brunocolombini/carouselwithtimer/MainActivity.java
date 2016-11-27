@@ -17,15 +17,19 @@ public class MainActivity extends AppCompatActivity {
     private Timer swipeTimer;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {git git
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
 
         HomeViewPagerAdapter homeViewPagerAdapter = new HomeViewPagerAdapter(this);
-        viewPager.setOnPageChangeListener(new CircularViewPagerHandler(viewPager, this));
+        CircularViewPagerHandler handler = new CircularViewPagerHandler(viewPager, this);
+        viewPager.setOnPageChangeListener(handler);
         viewPager.setAdapter(homeViewPagerAdapter);
+
+        handler.createSelectedItens(viewPager);
+
         autoChangeViewPagerCarousel(viewPager);
 
 

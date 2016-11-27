@@ -70,16 +70,29 @@ public class CircularViewPagerHandler implements ViewPager.OnPageChangeListener 
     }
 
     private void isSelectedItem(int position) {
+        createSelectedItens(mViewPager,position);
+    }
+
+
+
+    public void createSelectedItens(ViewPager mViewPager) {
+        makeItens(mViewPager,0);
+    }
+
+    public void createSelectedItens(ViewPager mViewPager,int mCurrentPosition) {
+        makeItens(mViewPager,mCurrentPosition);
+    }
+
+    private void makeItens(ViewPager mViewPager,int mCurrentPosition){
+        int position = mCurrentPosition;
+        final int NUM_PAGES = mViewPager.getAdapter().getCount();
+
         LinearLayout linearLayout = (LinearLayout) mActivity.findViewById(R.id.indicator);
         linearLayout.removeAllViews();
-
         int density = (int) linearLayout.getResources().getDisplayMetrics().density;
-
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(20 * density, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        int NUM_PAGES = mViewPager.getAdapter().getCount() - 1;
-
-        for (int i = 0; i <= NUM_PAGES; i++) {
+        for (int i = 0; i < NUM_PAGES; i++) {
             ImageView imageView = new ImageView(mActivity);
             imageView.setImageResource(i == position ? R.drawable.selecteditem_dot : R.drawable.nonselecteditem_dot);
             imageView.setLayoutParams(layoutParams);
