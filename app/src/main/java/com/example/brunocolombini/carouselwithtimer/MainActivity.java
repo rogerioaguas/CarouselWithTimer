@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
 
         HomeViewPagerAdapter homeViewPagerAdapter = new HomeViewPagerAdapter(this);
-        CircularViewPagerHandler handler = new CircularViewPagerHandler(viewPager, this);
-        viewPager.setOnPageChangeListener(handler);
         viewPager.setAdapter(homeViewPagerAdapter);
 
+        CircularViewPagerHandler handler = new CircularViewPagerHandler(viewPager, this);
         handler.createSelectedItens(viewPager);
+        viewPager.setOnPageChangeListener(handler);
 
         autoChangeViewPagerCarousel(viewPager);
 
